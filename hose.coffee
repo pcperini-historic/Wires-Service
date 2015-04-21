@@ -8,14 +8,14 @@ htmlEntities = require("html-entities").AllHtmlEntities
 # Setup
 htmlCoder = new htmlEntities()
 client = new Twitter
-    consumer_key: process.env.consumerKey
-    consumer_secret: process.env.consumerSecret
-    access_token_key: process.env.accessTokenKey
-    access_token_secret: process.env.accessTokenSecret
+    consumer_key: process.env.TWITTER_CONSUMER_KEY
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET
+    access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
     
 # Main
 start = () ->
-    client.stream "statuses/filter", {follow: process.env.breakingAccounts + "," + process.env.generalAccounts}, (stream) ->
+    client.stream "statuses/filter", {follow: process.env.TWITTER_BREAKING_ACCOUNTS + "," + process.env.TWITTER_GENERAL_ACCOUNTS}, (stream) ->
         stream.on "data", (tweet) ->
             sendTweet(tweet)
 
@@ -26,7 +26,7 @@ throng start,
 # Tweet Handlers
 sendTweet = (tweet) ->
     validTweet = true
-    if tweet.user.id_str in process.env.generalAccounts.split(",") # tweet is from general account
+    if tweet.user.id_str in process.env.TWITTER_GENERAL_ACCOUNTS.split(",") # tweet is from general account
         validTweet = tweet.text.toLowerCase().startsWith("breaking") # and therefore must start with "BREAKING"
 
     if validTweet
