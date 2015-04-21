@@ -1,0 +1,14 @@
+{
+  "name": "com.pcperini.Wires",
+  "version": "0.0.1",
+  "dependencies": {
+    "apns": "^0.1.0",
+    "body-parser": "^1.12.3",
+    "coffee-script": "^1.9.2",
+    "express": "^4.12.3",
+    "google-spreadsheet": "^0.2.8",
+    "html-entities": "^1.1.2",
+    "throng": "^1.0.0",
+    "twitter": "^1.2.5"
+  }
+}
