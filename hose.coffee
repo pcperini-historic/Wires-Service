@@ -24,12 +24,18 @@ throng start,
     lifetime: Infinity
     
 # Tweet Handlers
-sendTweet = (tweet) ->
+validTweet = (tweet) ->
     validTweet = true
     if tweet.user.id_str in process.env.TWITTER_GENERAL_ACCOUNTS.split(",") # tweet is from general account
         validTweet = tweet.text.toLowerCase().startsWith("breaking") # and therefore must start with "BREAKING"
+    else if !tweet.user.id_str in process.env.TWITTER_BREAKING_ACCOUNTS.split(",") # tweet isn't in either accounts list
+        validTweet = false
+    
+    validTweet &= !tweet.text.startsWith("@")
+    return validTweet
 
-    if validTweet
+sendTweet = (tweet) ->
+    if validTweet(tweet)
         text = tweet.user.name + " — " + (if tweet.text.length >= 64 then tweet.text.substring(0, 61) + "..." else tweet.text)
         text = htmlCoder.decode(text)
         sourceURL = tweet.entities.urls[0]?.expanded_url
