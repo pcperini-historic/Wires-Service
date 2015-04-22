@@ -28,7 +28,7 @@ class PushService
         
         notification.expiry = Math.floor(Date.now() / 1000) + 3600; # 1h
         notification.alert = text
-        notification.category = if sourceURL? then type else null
+        notification.category = if sourceURL? then type else "com.pcperini.Wires.default"
         
         notification.payload =
             notificationType: type
