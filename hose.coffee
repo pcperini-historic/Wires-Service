@@ -25,8 +25,10 @@ throng start,
     
 # Tweet Handlers
 validTweet = (tweet) ->
+    unless tweet.user.id_str?
+        return false
+
     tweetValid = true
-    
     if tweet.user.id_str in process.env.TWITTER_GENERAL_ACCOUNTS.split(",") # tweet is from general account
         tweetValid = tweet.text.toLowerCase().startsWith("breaking") # and therefore must start with "BREAKING"
     
