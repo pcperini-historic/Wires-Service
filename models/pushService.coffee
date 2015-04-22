@@ -20,7 +20,7 @@ class PushService
         return token.match(/^[A-Fa-f0-9]{64}$/)?
         
     # Push Handlers
-    push: (type, text, sourceURL, devices) ->
+    @push: (type, text, sourceURL, devices) ->
         notification = new apn.Notification
         
         notification.expiry = Math.floor(Date.now() / 1000) + 3600; # 1h
