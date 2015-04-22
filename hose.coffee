@@ -40,7 +40,7 @@ validTweet = (tweet) ->
 
 sendTweet = (tweet) ->
     if validTweet(tweet)
-        text = tweet.user.name + " — " + (if tweet.text.length >= 64 then tweet.text.substring(0, 61) + "..." else tweet.text)
+        text = tweet.user.name + " — " + (if tweet.text.length >= 100 then tweet.text.substring(0, 97) + "..." else tweet.text)
         text = htmlCoder.decode(text)
         sourceURL = tweet.entities.urls[0]?.expanded_url
     
