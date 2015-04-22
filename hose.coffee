@@ -25,14 +25,15 @@ throng start,
     
 # Tweet Handlers
 validTweet = (tweet) ->
-    validTweet = true
-    if tweet.user.id_str in process.env.TWITTER_GENERAL_ACCOUNTS.split(",") # tweet is from general account
-        validTweet = tweet.text.toLowerCase().startsWith("breaking") # and therefore must start with "BREAKING"
-    else if !tweet.user.id_str in process.env.TWITTER_BREAKING_ACCOUNTS.split(",") # tweet isn't in either accounts list
-        validTweet = false
+    tweetValid = true
     
-    validTweet &= !tweet.text.startsWith("@")
-    return validTweet
+    if tweet.user.id_str in process.env.TWITTER_GENERAL_ACCOUNTS.split(",") # tweet is from general account
+        tweetValid = tweet.text.toLowerCase().startsWith("breaking") # and therefore must start with "BREAKING"
+    else if !tweet.user.id_str in process.env.TWITTER_BREAKING_ACCOUNTS.split(",") # tweet isn't in either accounts list
+        tweetValid = false
+    
+    tweetValid &= !tweet.text.startsWith("@")
+    return tweetValid
 
 sendTweet = (tweet) ->
     if validTweet(tweet)
