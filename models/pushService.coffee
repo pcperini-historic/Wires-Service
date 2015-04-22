@@ -28,6 +28,8 @@ class PushService
         
         notification.expiry = Math.floor(Date.now() / 1000) + 3600; # 1h
         notification.alert = text
+        notification.category = type
+        
         notification.payload =
             notificationType: type
             sourceURL: sourceURL
