@@ -37,7 +37,7 @@ class PushService
         
         console.log (device.token for device in devices)
         
-        connection.sendNotification(notification, (device.token for device in devices))
+        connection.pushNotification(notification, (device.token for device in devices))
         connection.on "transmissionError", (err, notification, device) ->
             console.error "Error " + err + " Failed to send notification " + JSON.stringify(notification) + " to device " + device + "."
         
