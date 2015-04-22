@@ -32,7 +32,7 @@ class PushService
             notificationType: type
             sourceURL: sourceURL
             
-        options = if Device.options.inDev then Device.options.dev else Device.options.prod        
+        options = if PushService.options.inDev then PushService.options.dev else PushService.options.prod        
         connection = new apn.Connection(options)
         
         connection.sendNotification(notification, (device.token for token in devices))
