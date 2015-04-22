@@ -26,7 +26,7 @@ throng start,
     
 # Tweet Handlers
 validTweet = (tweet) ->
-    unless tweet.user.id_str?
+    unless tweet?.user?.id_str?
         return false
 
     tweetValid = true
