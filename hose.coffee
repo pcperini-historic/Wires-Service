@@ -31,7 +31,7 @@ validTweet = (tweet) ->
 
     tweetValid = true
     if tweet.user.id_str in process.env.TWITTER_GENERAL_ACCOUNTS.split(",") # tweet is from general account
-        tweetValid = tweet.text.toLowerCase().lastIndexOf("breaking") != 0 # and therefore must start with "BREAKING"
+        tweetValid = tweet.text.toLowerCase().lastIndexOf("breaking") == 0 # and therefore must start with "BREAKING"
     
     tweetValid &= (tweet.user.id_str in process.env.TWITTER_GENERAL_ACCOUNTS.split(",")) || (tweet.user.id_str in process.env.TWITTER_BREAKING_ACCOUNTS.split(","))
     tweetValid &= tweet.text.lastIndexOf("@") != 0 # doesn't start with @
