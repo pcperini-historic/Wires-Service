@@ -1,20 +1,20 @@
-apns = require "apns"
+apn = require "apn"
 sheets = require "google-spreadsheet"
 
 class Device
     # Class Properties
     @options =
         dev:
-            keyFile: "keys/dev_key.pem"
-            certFile: "keys/dev_cert.pem"
-            gateway: "gateway.sandbox.push.apple.com"
-            debug: true
+            key: "keys/dev_key.pem"
+            cert: "keys/dev_cert.pem"
+            production: true
+            maxConnections: Infinity
             
         prod:
-            keyFile: "keys/prod_key.pem"
-            certFile: "keys/prod_cert.pem"
-            gateway: "gateway.push.apple.com"
-            debug: false
+            key: "keys/prod_key.pem"
+            cert: "keys/prod_cert.pem"
+            production: false
+            maxConnections: Infinity
         
         inDev: true
         
@@ -50,21 +50,17 @@ class Device
     
     # Push Handlers
     push: (type, text, sourceURL) ->
-        notification = new apns.Notification
-        notification.device = new apns.Device(@token)
+        notification = new apn.Notification
         
+        notification.expiry = Math.floor(Date.now() / 1000) + 3600; # 1h
         notification.alert = text
         notification.payload =
             notificationType: type
             sourceURL: sourceURL
             
-        options = if Device.options.inDev then Device.options.dev else Device.options.prod
-        options.errorCallback = @pushError
+        options = if Device.options.inDev then Device.options.dev else Device.options.prod        
+        connection = new apn.Connection(options)
         
-        connection = connection = new apns.Connection(options)
-        connection.sendNotification(notification)
-        
-    pushError: (errNum, notification) ->
-        console.log "error: " + errNum
+        connection.sendNotification(notification, new apn.Device(@token))
         
 module.exports = Device
