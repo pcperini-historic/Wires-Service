@@ -1,4 +1,4 @@
-apn = require "apn"
+# Imports
 sheets = require "google-spreadsheet"
 
 class Device

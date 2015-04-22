@@ -1,3 +1,6 @@
+# Imports
+apn = require "apn"
+
 class PushService
     # Class Properties
     @options =
