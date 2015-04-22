@@ -62,5 +62,7 @@ class Device
         connection = new apn.Connection(options)
         
         connection.sendNotification(notification, new apn.Device(@token))
+        connection.on "transmissionError", (err, notification, device) ->
+            console.error "Error " + err + " Failed to send notification " + notification + " to device " + device + "."
         
 module.exports = Device
