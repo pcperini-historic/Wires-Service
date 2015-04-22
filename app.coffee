@@ -1,6 +1,7 @@
 # Imports
 Device = require "./models/device"
 Headline = require "./models/headline"
+PushService = require "./models/pushService"
 express = require "express"
 bodyParser = require "body-parser"
 
@@ -14,7 +15,7 @@ app.get "/", (req, resp) ->
     resp.send "Wires is listening for breaking news headlines."
     
 app.post "/", (req, resp) ->
-    if !Device.validToken(req.body.token)
+    if !PushService.validToken(req.body.token)
         resp.send 401
         return
 

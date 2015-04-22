@@ -1,6 +1,7 @@
 # Imports
 Device = require "./models/device"
 Headline = require "./models/headline"
+PushService = require "./models/pushService"
 Twitter = require "twitter"
 throng = require "throng"
 htmlEntities = require("html-entities").AllHtmlEntities
@@ -47,5 +48,4 @@ sendTweet = (tweet) ->
         console.log "Sending " + headline.text
         
         Device.all (devices) ->
-            for device in devices
-                device.push Headline.notificationType, headline.text, headline.sourceURL
+            PushService.push Headline.notificationType, headline.text, headline.sourceURL, devices
