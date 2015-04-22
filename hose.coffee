@@ -29,9 +29,8 @@ validTweet = (tweet) ->
     
     if tweet.user.id_str in process.env.TWITTER_GENERAL_ACCOUNTS.split(",") # tweet is from general account
         tweetValid = tweet.text.toLowerCase().startsWith("breaking") # and therefore must start with "BREAKING"
-    else if !tweet.user.id_str in process.env.TWITTER_BREAKING_ACCOUNTS.split(",") # tweet isn't in either accounts list
-        tweetValid = false
-
+    
+    tweetValid &= (tweet.user.id_str in process.env.TWITTER_GENERAL_ACCOUNTS.split(",")) || (tweet.user.id_str in process.env.TWITTER_BREAKING_ACCOUNTS.split(","))
     return tweetValid
 
 sendTweet = (tweet) ->
