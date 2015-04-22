@@ -1,5 +1,6 @@
 # Imports
 apn = require "apn"
+Device = require "device"
 
 class PushService
     # Class Properties
