@@ -7,13 +7,13 @@ class PushService
         dev:
             key: "keys/dev_key.pem"
             cert: "keys/dev_cert.pem"
-            production: true
+            production: false
             maxConnections: Infinity
             
         prod:
             key: "keys/prod_key.pem"
             cert: "keys/prod_cert.pem"
-            production: false
+            production: true
             maxConnections: Infinity
         
         inDev: true
