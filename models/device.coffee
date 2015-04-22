@@ -5,10 +5,10 @@ class Device
     # Class Properties
     @options =
         sheet:
-            username: "pcperini@gmail.com"
-            password: "tweph^erd(ugs?urc;ek&an?bond:at/lod@hal(ni)wu=twoj"
+            username: process.env.GOOGLE_USERNAME
+            password: process.env.GOOGLE_PASSWORD
         
-    @sheet = new sheets "1rYe1gD2L8nWxr5wU0MVWZs2ZBq6cCU4bIciMMhQY0rY"
+    @sheet = new sheets process.env.GOOGLE_SHEET_KEY
 
     # Class Accessors
     @all: (callback) ->
