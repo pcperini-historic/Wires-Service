@@ -20,7 +20,7 @@ class PushService
         
     # Class Accessors
     @validToken: (token) ->
-        return token.match(/^[A-Fa-f0-9]{64}$/)?
+        return token? && token.match(/^[A-Fa-f0-9]{64}$/)?
         
     # Push Handlers
     @push: (type, text, sourceURL, devices) ->

@@ -49,7 +49,7 @@ sendTweet = (tweet) ->
         console.log "Sending " + headline.text
         
         # send to app
-        request.post process.env.INT_URL, {form: {
+        request.post process.env.INT_URL + "/headline", {form: {
             key: process.env.INT_KEY,
             headline: {
                 text: headline.text,
