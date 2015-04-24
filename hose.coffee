@@ -5,6 +5,7 @@ PushService = require "./models/pushService"
 Twitter = require "twitter"
 throng = require "throng"
 htmlEntities = require("html-entities").AllHtmlEntities
+requests = require "requests"
 
 # Setup
 htmlCoder = new htmlEntities()
@@ -47,5 +48,15 @@ sendTweet = (tweet) ->
         headline = new Headline text, sourceURL
         console.log "Sending " + headline.text
         
+        # send to app
+        request.post process.env.INT_URL, {form: {
+            key: process.env.INT_KEY,
+            headline: {
+                text: headline.text,
+                sourceURL: headline.sourceURL
+            }
+        }}
+        
+        # push to clients
         Device.all (devices) ->
             PushService.push Headline.notificationType, headline.text, headline.sourceURL, devices
