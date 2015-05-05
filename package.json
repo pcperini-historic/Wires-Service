@@ -1,6 +1,6 @@
 {
   "name": "com.pcperini.Wires",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "apn": "^1.7.3",
     "body-parser": "^1.12.3",
