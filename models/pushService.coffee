@@ -16,7 +16,7 @@ class PushService
             production: true
             maxConnections: Infinity
         
-        inDev: true
+        inDev: JSON.parse process.env.APNS_IN_DEV
         
     # Class Accessors
     @validToken: (token) ->

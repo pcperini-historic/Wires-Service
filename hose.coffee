@@ -36,6 +36,7 @@ validTweet = (tweet) ->
     
     tweetValid &= (tweet.user.id_str in process.env.TWITTER_GENERAL_ACCOUNTS.split(",")) || (tweet.user.id_str in process.env.TWITTER_BREAKING_ACCOUNTS.split(","))
     tweetValid &= tweet.text.lastIndexOf("@") != 0 # doesn't start with @
+    tweetValid &= tweet.text.lastIndexOf("RT") != 0 # doesn't start with RT
     
     return tweetValid
 
