@@ -11,7 +11,10 @@ lastTweet = null
     
 # Main
 start = () ->
-    Tweet.stream {follow: process.env.TWITTER_BREAKING_ACCOUNTS + "," + process.env.TWITTER_GENERAL_ACCOUNTS}, (tweet) ->
+    streamOptions =
+        follow: process.env.TWITTER_BREAKING_ACCOUNTS + "," + process.env.TWITTER_GENERAL_ACCOUNTS
+    
+    Tweet.stream streamOptions, (tweet) ->
         sendHeadline(tweet)
         lastTweet = tweet
 
