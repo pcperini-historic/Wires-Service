@@ -25,7 +25,7 @@ throng start,
 # Headline Handlers
 sendHeadline = (tweet) ->
     if tweet.isValid() && tweet.distanceFromTweet(lastTweet) < 0.50
-        headline = new Headline tweet.text, tweet.sourceURL
+        headline = new Headline tweet.description(), tweet.sourceURL
         console.log "Sending " + headline.text
         
         # send to app

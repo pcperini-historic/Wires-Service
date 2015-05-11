@@ -17,7 +17,6 @@ class Tweet
     @stream: (filterData, handler) ->
         Tweet.client.stream "statuses/filter", filterData, (stream) ->
             stream.on "data", (tweetData) ->
-                console.log tweetData
                 handler(new Tweet tweetData)
 
     # Constructors
