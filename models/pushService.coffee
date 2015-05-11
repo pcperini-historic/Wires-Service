@@ -37,8 +37,6 @@ class PushService
         options = if PushService.options.inDev then PushService.options.dev else PushService.options.prod        
         connection = new apn.Connection(options)
         
-        console.log (device.token for device in devices)
-        
         connection.pushNotification(notification, (device.token for device in devices))
         connection.on "transmissionError", (err, notification, device) ->
             console.error "Error " + err + " Failed to send notification " + JSON.stringify(notification) + " to device " + device + "."

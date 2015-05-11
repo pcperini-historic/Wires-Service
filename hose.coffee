@@ -2,51 +2,23 @@
 Device = require "./models/device"
 Headline = require "./models/headline"
 PushService = require "./models/pushService"
-Twitter = require "twitter"
+Tweet = require "./models/tweet"
 throng = require "throng"
-htmlEntities = require("html-entities").AllHtmlEntities
 request = require "request"
-
-# Setup
-htmlCoder = new htmlEntities()
-client = new Twitter
-    consumer_key: process.env.TWITTER_CONSUMER_KEY
-    consumer_secret: process.env.TWITTER_CONSUMER_SECRET
-    access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY
-    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
     
 # Main
 start = () ->
-    client.stream "statuses/filter", {follow: process.env.TWITTER_BREAKING_ACCOUNTS + "," + process.env.TWITTER_GENERAL_ACCOUNTS}, (stream) ->
-        stream.on "data", (tweet) ->
-            sendTweet(tweet)
+    Tweet.stream {follow: process.env.TWITTER_BREAKING_ACCOUNTS + "," + process.env.TWITTER_GENERAL_ACCOUNTS}, (tweet) ->
+        sendHeadline(tweet)
 
 throng start,
     workers: 1
     lifetime: Infinity
     
-# Tweet Handlers
-validTweet = (tweet) ->
-    unless tweet?.user?.id_str?
-        return false
-
-    tweetValid = true
-    if tweet.user.id_str in process.env.TWITTER_GENERAL_ACCOUNTS.split(",") # tweet is from general account
-        tweetValid = tweet.text.toLowerCase().lastIndexOf("breaking") == 0 # and therefore must start with "BREAKING"
-    
-    tweetValid &= (tweet.user.id_str in process.env.TWITTER_GENERAL_ACCOUNTS.split(",")) || (tweet.user.id_str in process.env.TWITTER_BREAKING_ACCOUNTS.split(","))
-    tweetValid &= tweet.text.lastIndexOf("@") != 0 # doesn't start with @
-    tweetValid &= tweet.text.lastIndexOf("RT") != 0 # doesn't start with RT
-    
-    return tweetValid
-
-sendTweet = (tweet) ->
-    if validTweet(tweet)
-        text = tweet.user.name + " — " + (if tweet.text.length >= 100 then tweet.text.substring(0, 97) + "..." else tweet.text)
-        text = htmlCoder.decode(text)
-        sourceURL = tweet.entities.urls[-1..]?[0]?.expanded_url
-    
-        headline = new Headline text, sourceURL
+# Headline Handlers
+sendHeadline = (tweet) ->
+    if tweet.isValid()
+        headline = new Headline tweet.text, tweet.sourceURL
         console.log "Sending " + headline.text
         
         # send to app
