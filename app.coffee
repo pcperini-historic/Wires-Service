@@ -15,7 +15,7 @@ app.lastHeadline = null
 
 # Routes
 app.get "/", (req, resp) ->
-    resp.send "Wires is listening for breaking news headlines."
+    resp.sendfile "./views/beta.html"
     
 app.post "/", (req, resp) ->
     # {"token": "8badf00d"}

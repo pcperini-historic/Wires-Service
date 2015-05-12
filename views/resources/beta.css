@@ -1,0 +1,88 @@
+body {
+    background-color: #50E3C2;
+    font: 1em "HelveticaNeue-UltraLight", Arial, Helvetica, Geneva, sans-serif;
+}
+
+form {
+    display: inline !important;
+}
+
+input[type=email] {
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    
+    border: 1px #979797;
+    padding: 5px;
+    outline: none;
+    
+    width: 75%;
+    height: 44px;
+    
+    font: 1.3em "HelveticaNeue-Light", Arial, Helvetica, Geneva, sans-serif;
+}
+::-webkit-input-placeholder {color: #50E3C2; text-align: center;}
+:-moz-placeholder {color: #50E3C2; text-align: center;}
+::-moz-placeholder {color: #50E3C2; }
+:-ms-input-placeholder {color: #50E3C2;}
+
+input[type=submit] {
+    width: 20%;
+    height: 44px;
+
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    
+    border: 1px #979797;
+    outline: none;
+    
+    color: white;
+    font: 1.3em "HelveticaNeue-Light", Arial, Helvetica, Geneva, sans-serif;
+    
+    background-color: #393939;
+    -webkit-appearance: none;
+}
+
+.center {
+    display: block;
+    text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
+    
+    width: 33%;
+}
+
+#tagline {
+    font-size: 2em;
+}
+
+.screenshot {
+    display: inline-block;
+    margin-top: 5%;    
+}
+
+#iphone-screenshot {
+    float: left;
+    margin-left: 5%;
+
+    width: 33%;
+    height: 50%;
+    
+    background-image: url("iphone.png");
+    background-size: cover;
+}
+
+#watch-screenshot {
+    display: inline-block;
+    
+    float: right;
+    margin-right: 5%;
+
+    width: 33%;
+    height: 50%;
+        
+    background-image: url("watch.png");
+    background-size: cover;
+}
