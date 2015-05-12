@@ -61,17 +61,24 @@ input[type=submit] {
 .screenshot {
     display: inline-block;
     margin-top: 5%;    
+    
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+      
+    background-position: center top;
+    min-width: 40%;
 }
 
 #iphone-screenshot {
     float: left;
     margin-left: 5%;
 
-    width: 33%;
+    width: 40%;
     height: 50%;
     
     background-image: url("iphone.png");
-    background-size: cover;
 }
 
 #watch-screenshot {
@@ -80,9 +87,8 @@ input[type=submit] {
     float: right;
     margin-right: 5%;
 
-    width: 33%;
+    width: 40%;
     height: 50%;
         
     background-image: url("watch.png");
-    background-size: cover;
 }
