@@ -58,9 +58,19 @@ input[type=submit] {
     font-size: 2em;
 }
 
-.screenshot {
-    display: inline-block;
+#screenshots {
+    position: relative;
     margin-top: 5%;    
+    
+    width: 100%;
+    height: 50%;
+}
+
+.screenshot {
+    position: absolute;
+    bottom: -5%;
+
+    display: inline-block;
     
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -72,23 +82,19 @@ input[type=submit] {
 }
 
 #iphone-screenshot {
-    float: left;
-    margin-left: 5%;
+    left: 5%;
 
     width: 40%;
-    height: 50%;
+    height: 100%;
     
     background-image: url("iphone.png");
 }
 
 #watch-screenshot {
-    display: inline-block;
-    
-    float: right;
-    margin-right: 5%;
+    right: 5%;
 
     width: 40%;
-    height: 50%;
+    height: 100%;
         
     background-image: url("watch.png");
 }
