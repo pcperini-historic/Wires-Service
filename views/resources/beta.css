@@ -7,6 +7,10 @@ form {
     display: inline !important;
 }
 
+.form {
+    min-width: 90%;
+}
+
 input[type=email] {
     border-radius: 2px;
     -moz-border-radius: 2px;
@@ -17,7 +21,6 @@ input[type=email] {
     outline: none;
     
     width: 75%;
-    min-width: 200px;
     height: 44px;
     
     font: 1.3em "HelveticaNeue-Light", Arial, Helvetica, Geneva, sans-serif;
@@ -29,7 +32,6 @@ input[type=email] {
 
 input[type=submit] {
     width: 20%;
-    min-width: 40px;
     height: 44px;
 
     border-radius: 2px;
