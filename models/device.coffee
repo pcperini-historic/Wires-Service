@@ -30,5 +30,13 @@ class Device
             unless self.token in (device.token for device in devices)
                 Device.authSheet () -> # otherwise, add new
                     Device.sheet.addRow 1, {token: self.token}
+                    
+    delete: () ->
+        self = this
+        @authSheet () ->
+            Device.sheet.getRows 1, (error, rows) ->
+                equalRows = (row for row in rows when row.title == self.token)
+                for row in equalRows
+                    row.del()
         
 module.exports = Device

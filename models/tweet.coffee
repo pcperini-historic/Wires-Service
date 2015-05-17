@@ -53,6 +53,6 @@ class Tweet
         return tweetValid
     
     description: () ->
-        return @user.name + " — " + (if @text.length >= 100 then @text.substring(0, 97) + "..." else @text)
+        return @user.name + " — " + (if @text.length >= 512 then @text.substring(0, 509) + "..." else @text)
         
 module.exports = Tweet

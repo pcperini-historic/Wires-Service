@@ -40,5 +40,9 @@ class PushService
         connection.pushNotification(notification, (device.token for device in devices))
         connection.on "transmissionError", (err, notification, device) ->
             console.error "Error " + err + " Failed to send notification " + JSON.stringify(notification) + " to device " + device + "."
+            # APNS Response Info: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/CommunicatingWIthAPS.html
+            
+            switch err
+                when 8 then device.delete()
         
 module.exports = PushService
