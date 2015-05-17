@@ -22,6 +22,7 @@ class Device
 
     # Constructors
     constructor: (@token) ->
+        # apply properties
     
     # Mutators
     save: () ->
@@ -35,8 +36,8 @@ class Device
         self = this
         @authSheet () ->
             Device.sheet.getRows 1, (error, rows) ->
-                equalRows = (row for row in rows when row.title == self.token)
+                equalRows = (row for row in rows when row.title == self.token) # filter by equality
                 for row in equalRows
-                    row.del()
+                    row.del() # delete
         
 module.exports = Device

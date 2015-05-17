@@ -35,12 +35,11 @@ class PushService
             sourceURL: sourceURL
             
         options = if PushService.options.inDev then PushService.options.dev else PushService.options.prod        
-        connection = new apn.Connection(options)
+        connection = new apn.Connection options
         
-        connection.pushNotification(notification, (device.token for device in devices))
+        connection.pushNotification notification, (device.token for device in devices)
         connection.on "transmissionError", (err, notification, token) ->
             # APNS Response Info: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/CommunicatingWIthAPS.html
-        
             device = new Device token
             console.error "Error " + err + " Failed to send notification " + JSON.stringify(notification) + " to device " + token + "."
             

@@ -21,6 +21,7 @@ class Tweet
 
     # Constructors
     constructor: (tweetData) ->
+        # {"user": {"id_str": "12345", "name": "User Name"}, "text": "BREAKING: News", "entities": {"urls": [{"expanded_url": "http://google.com"}]}}
         @user =
             id: tweetData.user.id_str
             name: htmlCoder.decode(tweetData.user.name)

@@ -4,5 +4,6 @@ class Headline
     
     # Constructors
     constructor: (@text, @sourceURL) ->
+        # apply properties
     
 module.exports = Headline
