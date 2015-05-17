@@ -38,8 +38,9 @@ class PushService
         connection = new apn.Connection(options)
         
         connection.pushNotification(notification, (device.token for device in devices))
-        connection.on "transmissionError", (err, notification, device) ->
-            console.error "Error " + err + " Failed to send notification " + JSON.stringify(notification) + " to device " + device + "."
+        connection.on "transmissionError", (err, notification, token) ->
+            console.error "Error " + err + " Failed to send notification " + JSON.stringify(notification) + " to device " + token + "."
+            device = new Device token
             # APNS Response Info: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/CommunicatingWIthAPS.html
             
             switch err
