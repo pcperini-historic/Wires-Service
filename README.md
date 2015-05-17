@@ -2,7 +2,7 @@
 Wires is listening for breaking news headlines.
 
 ## Accounts ##
-|    Handle    |   Field  |        Breaking         |     ID    |
+| Handle       | Field    |        Breaking         | ID        |
 |:-------------|:---------|:-----------------------:|:----------|
 | @ReutersLive | Int’l    | :ballot_box_with_check: | 15108702  |
 | @AJELive     | Int’l    |  :white_medium_square:  | 18424289  |
