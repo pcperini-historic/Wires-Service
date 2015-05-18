@@ -16,7 +16,7 @@ app.lastHeadline = null
 
 # Routes
 app.get "/", (req, resp) ->
-    resp.sendfile "./views/beta.html"
+    resp.sendFile "./views/beta.html"
     
 app.post "/", (req, resp) ->
     # {"token": "8badf00d"}
