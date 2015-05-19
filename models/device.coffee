@@ -34,7 +34,7 @@ class Device
                     
     delete: () ->
         self = this
-        @authSheet () ->
+        Device.authSheet () ->
             Device.sheet.getRows 1, (error, rows) ->
                 equalRows = (row for row in rows when row.title == self.token) # filter by equality
                 for row in equalRows
