@@ -23,11 +23,11 @@ class Tweet
     constructor: (tweetData) ->
         # {"user": {"id_str": "12345", "name": "User Name"}, "text": "BREAKING: News", "entities": {"urls": [{"expanded_url": "http://google.com"}]}}
         @user =
-            id: tweetData.user.id_str
-            name: htmlCoder.decode(tweetData.user.name)
+            id: tweetData?.user?.id_str
+            name: htmlCoder.decode(tweetData?.user?.name)
         
-        @text = htmlCoder.decode(tweetData.text)
-        @sourceURL = tweetData.entities.urls[-1..]?[0]?.expanded_url
+        @text = htmlCoder.decode(tweetData?.text)
+        @sourceURL = tweetData?.entities?.urls?[-1..]?[0]?.expanded_url
         
     # Accessors
     distanceFromTweet: (comparisonTweet) ->
@@ -43,7 +43,7 @@ class Tweet
         return (similarWords.length / (tokenizer.tokenize @text).length)
     
     isValid: () ->
-        tweetValid = true
+        tweetValid = @text?.length > 0
         if @user.id in process.env.TWITTER_GENERAL_ACCOUNTS.split(",") # tweet is from general account
             tweetValid = @text.toLowerCase().lastIndexOf("breaking") == 0 # and therefore must start with "BREAKING"
         
